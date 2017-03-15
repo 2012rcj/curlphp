@@ -1,10 +1,16 @@
 <?php
-$params=['name'=>'John', 'surname'=>'Doe', 'age'=>'36']
-$defaults = array(
-CURLOPT_URL => 'http://myremoteservice/', 
-CURLOPT_POST => true,
-CURLOPT_POSTFIELDS => $params,
-);
 $ch = curl_init();
-curl_setopt_array($ch, ($options + $defaults));
+$curlConfig = array(
+    CURLOPT_URL            => "http://www.example.com/yourscript.php",
+    CURLOPT_POST           => true,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POSTFIELDS     => array(
+        'field1' => 'some date',
+        'field2' => 'some other data',
+    )
+);
+curl_setopt_array($ch, $curlConfig);
+$result = curl_exec($ch);
+curl_close($ch);
+
 ?>
